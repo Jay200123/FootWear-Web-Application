@@ -9,7 +9,7 @@ $(document).ready(function () {
             'pdf',
             'excel',
             {
-                text:'Add item',
+                text:'Add Product',
                 className: 'btn btn-primary',
                 action: function(e, dt, node, config){
                     $("#pform").trigger("reset");

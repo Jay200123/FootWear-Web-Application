@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('products/all', [ProductController::class, 'getProduct'])->name('product.all');
 //post
 Route::post('/products/store', [ProductController::class, 'store'])->name('product.store');
+
+//service api 
+//get
+Route::get('services/all', [ServiceController::class, 'getService'])->name('service.all');
+//post
+Route::post('/services/store', [ServiceController::class, 'store'])->name('service.store');
