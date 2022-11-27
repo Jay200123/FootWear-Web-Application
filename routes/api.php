@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,8 @@ Route::get('products/all', [ProductController::class, 'getProduct'])->name('prod
 Route::post('/products/store', [ProductController::class, 'store'])->name('product.store');
 
 //edit
-Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
-Route::put('products/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
 
 //delete
 Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('product.delete');
@@ -43,3 +44,11 @@ Route::post('/services/store', [ServiceController::class, 'store'])->name('servi
 Route::delete('services/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
 
 
+//customer
+//get
+Route::get('/customers/all', ['uses' => 'CustomerController@getCustomerAll', 'as' => 'customer.getcustomerall']);
+//post
+Route::post('/customers/store', [CustomerController::class, 'store'])->name('customer.store');
+
+//delete
+Route::delete('customers/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');

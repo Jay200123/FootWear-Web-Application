@@ -40,6 +40,7 @@ $(document).ready(function () {
         
     })
     
+    //post
     $("#productSubmit").on("click", function (e) {
         e.preventDefault();
         var data = $("#pform")[0];
@@ -91,7 +92,7 @@ $(document).ready(function () {
             success:function(data){
                 console.log(data);
 
-                $('#itemId').val(data.id);
+                $('#productId').val(data.id);
                 $('#brand').val(data.brand);
                 $('#description').val(data.description);
                 $('#cost_price').val(data.cost_price);
@@ -109,7 +110,7 @@ $(document).ready(function () {
     $('#productUpdate').on('click', function(e){
 
         e.preventDefault();
-        var id = $('#itemId').val();
+        var id = $('#productId').val();
         console.log(id);
         
         var table = $('#ptable').DataTable();

@@ -75,6 +75,7 @@ $("#serviceSubmit").on("click", function (e) {
     })
 });
 
+//delete
 $("#sbody").on("click", ".deletebtn", function (e) {
     var id = $(this).data("id");
     var $tr = $(this).closest("tr");
