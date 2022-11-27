@@ -26,8 +26,20 @@ Route::get('products/all', [ProductController::class, 'getProduct'])->name('prod
 //post
 Route::post('/products/store', [ProductController::class, 'store'])->name('product.store');
 
+//edit
+Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('products/{id}', [ProductController::class, 'update'])->name('product.update');
+
+//delete
+Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+
 //service api 
 //get
 Route::get('services/all', [ServiceController::class, 'getService'])->name('service.all');
 //post
 Route::post('/services/store', [ServiceController::class, 'store'])->name('service.store');
+
+//delete
+Route::delete('services/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
+
+

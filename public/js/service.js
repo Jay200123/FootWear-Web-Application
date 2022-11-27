@@ -75,4 +75,50 @@ $("#serviceSubmit").on("click", function (e) {
     })
 });
 
+$("#sbody").on("click", ".deletebtn", function (e) {
+    var id = $(this).data("id");
+    var $tr = $(this).closest("tr");
+    // var id = $(e.relatedTarget).attr('id');
+    console.log(id);
+    e.preventDefault();
+    bootbox.confirm({
+        message: "Do you want to delete this service",
+        buttons: {
+            confirm: {
+                label: "Yes",
+                className: "btn-success",
+            },
+            cancel: {
+                label: "No",
+                className: "btn-danger",
+            },
+        },
+        callback: function (result) {
+            if (result)
+                $.ajax({
+                    type: "DELETE",
+                    url: "/api/services/" + id,
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        
+                        $tr.find("td").css('backgroundColor','hsl(0,100%,50%').fadeOut(2000, function () {
+                            $tr.remove();
+                        });
+                        
+                        
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    },
+                });
+        },
+    });
+});
+
 });
