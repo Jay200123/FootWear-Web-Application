@@ -33,7 +33,7 @@ $(document).ready(function () {
 
             {data: null,
                 render: function (data, type, row) {
-                    return "<a href='#' class = 'editBtn' id='editbtn' data-id=" + data.id + "><i class='fa-solid fa-pen-to-square' aria-hidden='true' style='font-size:24px' ></i></a><a href='#' class='deletebtn' data-id=" + data.id + "><i class='fa-sharp fa-solid fa-trash' style='font-size:24px; color:red'></a></i>";
+                    return "<a href='#' class='editBtn' id='editbtn' data-id=" + data.id + "><i class='fa-solid fa-pen-to-square' aria-hidden='true' style='font-size:24px' ></i></a><a href='#' class='deletebtn' data-id=" + data.id + "><i class='fa-sharp fa-solid fa-trash' style='font-size:24px; color:red'></a></i>";
                 },
             },
         ],
@@ -106,7 +106,7 @@ $(document).ready(function () {
         });
     });
 
-
+//update
     $('#productUpdate').on('click', function(e){
 
         e.preventDefault();

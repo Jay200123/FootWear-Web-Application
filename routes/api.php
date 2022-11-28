@@ -46,7 +46,8 @@ Route::delete('services/{id}', [ServiceController::class, 'destroy'])->name('ser
 
 //customer
 //get
-Route::get('/customers/all', ['uses' => 'CustomerController@getCustomerAll', 'as' => 'customer.getcustomerall']);
+Route::get('/customers/all', [CustomerController::class, 'getCustomerAll'])->name('customer.all');
+// Route::get('/customers/all', ['uses' => 'CustomerController@getCustomerAll', 'as' => 'customer.getcustomerall']);
 //post
 Route::post('/customers/store', [CustomerController::class, 'store'])->name('customer.store');
 

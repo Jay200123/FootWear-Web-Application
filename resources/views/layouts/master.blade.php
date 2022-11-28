@@ -2,7 +2,7 @@
  <html lang="en">
  <head>
  <meta charset="UTF-8">
- <title></title>
+ <title></title>    
  <style type="text/css">
     td.highlight{
         background-color: whitesmoke !important;
@@ -12,5 +12,6 @@
  <body>
  @yield('body')
  @include('layouts.base')
+ @include('layouts.header')
  </body>
  </html>
