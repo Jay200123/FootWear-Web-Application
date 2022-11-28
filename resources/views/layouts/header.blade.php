@@ -23,7 +23,7 @@
   justify-content: flex-end;
  }
  a{
-  color:White;
+  color:none;
   text-decoration:none;
  }
  p{
