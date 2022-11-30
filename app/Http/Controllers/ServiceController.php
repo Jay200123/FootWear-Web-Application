@@ -106,6 +106,7 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
         $service->delete();
 
-        return response()->json($service);
+        // return response()->json($service);
+        return response()->json(["success", => "Service deleted successfully.", "service" => $service, "status" => 200]);
     }
 }

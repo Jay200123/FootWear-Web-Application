@@ -144,6 +144,7 @@ $(document).ready(function () {
     });
 
 
+//edit
     $("#etable tbody").on("click", "a.editBtn", function (e) {
         e.preventDefault();
         $("#employeeModal").modal("show");
@@ -176,15 +177,19 @@ $(document).ready(function () {
         });
     });
 
+    //update
     $("#employeeUpdate").on("click", function (e) {
         e.preventDefault();
         var id = $("#employee_id").val();
         var data = $("#eform")[0];
+
         let formData = new FormData(data);
         console.log(formData);
+
         for (var pair of formData.entries()) {
             console.log(pair[0] + "," + pair[1]);
         }
+        
         var table = $("#etable").DataTable();
         console.log(id);
 
