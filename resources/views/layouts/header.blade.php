@@ -2,11 +2,12 @@
     body {
    padding: 0;
     margin: 0;
-    background: white;
+    background: linear-gradient(to bottom,  #ffffff 0%, #e6e6e6 100%);
+    /* background: linear-gradient(to bottom,  white 0%, black 100%); */
    }
  .navbar { 
   /* background: linear-gradient(to bottom, white 0%, black 100%); */
-  background-color:white;
+  background-color:black;
   padding: 15px;
   border-radius:5px;
   border:1px solid grey;
@@ -27,7 +28,7 @@
   text-decoration:none;
  }
  p{
-  color:black;
+  color:white;
   font-family: sans-serif;
   font-size: 15px;
  }

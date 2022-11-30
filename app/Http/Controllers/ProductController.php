@@ -107,7 +107,8 @@ class ProductController extends Controller
         $product->product_image = 'images/'.$files->getClientOriginalName();
         Storage::put('public/images/'.$files->getClientOriginalName(), file_get_contents($files));
         
-        $product->update($input);
+        // $product->update($input);
+        $product->save($input);
         return response()->json(["success" => "product updated successfully.", "product" => $product, "status" => 200]);
         // $product = $product->update($request->all());
     }

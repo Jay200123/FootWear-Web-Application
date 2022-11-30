@@ -85,7 +85,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $customer = Customer::findOrFail($id);
+        $customer = Customer::find($id);
         return response()->json($customer);
     }
 
@@ -98,7 +98,23 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $customer = Customer::find($id);
+
+        $customer->fname = $request->fname;
+        $customer->lname = $request->lname;
+        $customer->address = $request->address;
+        $customer->town = $request->town;
+        $customer->city = $request->city;
+        $customer->phone = $request->phone;
+
+        $files = $request->file('uploads');
+
+        $customer->customer_image = 'images/'. $files->getClientOriginalName();
+        // $customer->update();
+        $customer->save();
+
+        Storage::put('public/images/'.$files->getClientOriginalName(), file_get_contents($files));
+        return response()->json(["success" => "Customer updated successfully.", "customer" => $customer, "status" => 200]);
     }
 
     /**

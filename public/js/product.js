@@ -24,7 +24,7 @@ $(document).ready(function () {
             {   data:null,
                 render: function (data, type, row){
                     console.log(data.product_image);
-                    return `<img src="storage/${data.product_image}" width="50" height="60">`;
+                    return `<img src="storage/${data.product_image}" width="70px" height="80px">`;
                 }
             },
             {data: 'description'},
@@ -85,14 +85,18 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            cache: false,
             url: `/api/products/` + id + `/edit`,
-            headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content') },
+            headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content'), },
             dataType:"json",
 
             success:function(data){
                 console.log(data);
 
-                $('#productId').val(data.id);
+                $('#product_id').val(data.id);
                 $('#brand').val(data.brand);
                 $('#description').val(data.description);
                 $('#cost_price').val(data.cost_price);
@@ -110,35 +114,46 @@ $(document).ready(function () {
     $('#productUpdate').on('click', function(e){
 
         e.preventDefault();
-        var id = $('#productId').val();
+        var id = $('#product_id').val();
+        var data = $("#pform")[0];
+
+        let formData = new FormData(data);
+        console.log(formData);
+
+        for (var pair of formData.entries()){
+            console.log(pair[0] + "," + pair[1]);
+        }
+
+        var table = $("#ptable").DataTable();
         console.log(id);
-        
-        var table = $('#ptable').DataTable();
-        var cRow = $("tr td:eq("+ id + ")").closest('tr');
-        var data = $("#pform").serialize();
 
         $.ajax({
 
-            type: "PUT",
-            url: `/api/products/${id}`,
-            data:data,
-            headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content')},
+            type: "POST",
+            url: "/api/products/" + id,
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content'), },
             dataType: "json",
 
             success: function(data){
                 console.log(data);
+                $("#productModal").modal("hide");
+                table.ajax.reload();
 
-                $('#productModal').modal("hide");
-                table.row(cRow).data(data).invalidate().draw(false);
+                // $('#productModal').modal("hide");
+                // table.row(cRow).data(data).invalidate().draw(false);
                 },
 
                 error: function(error){
-                    alert('AJAX Error');
-                }
+                    alert('Error');
+                },
             });
 
     });
 
+//delete
     $("#pbody").on("click", ".deletebtn", function (e) {
         var id = $(this).data("id");
         var $tr = $(this).closest("tr");

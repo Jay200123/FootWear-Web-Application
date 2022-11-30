@@ -51,7 +51,7 @@ $(document).ready(function () {
                 data: null,
                 render: function (data, type, row) {
                     console.log(data.customer_image)
-                    return `<img src= "storage/${data.customer_image}" "height="50" width="60">`;
+                    return `<img src= "storage/${data.customer_image}" "height="90px" width="90px">`;
                 },
             },
               {
@@ -96,37 +96,102 @@ $(document).ready(function () {
             },
         });
     });
-    
-    $('#ctable tbody').on('click', 'a.editBtn', function(e){
 
+    $("#ctable tbody").on("click", "a.editBtn", function (e) {
         e.preventDefault();
-        $('#customerModal').modal('show');
-        var id = $(this).data('id');
+        $("#customerModal").modal("show");
+        var id = $(this).data("id");
 
         $.ajax({
             type: "GET",
-            url: `/api/customers/` + id + `/edit`,
-            headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content') },
-            dataType:"json",
-
-            success:function(data){
-                console.log(data);
-
-                $('#customerId').val(data.id);
-                $('#fname').val(data.fname);
-                $('#lname').val(data.lname);
-                $('#address').val(data.address);
-                $('#town').val(data.town);
-                $('#city').val(data.city);
-                $('#phone').val(data.phone);
-                $('#imagePath').val(data.product_image);
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            cache: false,
+            url: "/api/customers/" + id + "/edit",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                   $("#customer_id").val(data.id);
+                   $("#fname").val(data.fname);
+                   $("#lname").val(data.lname);
+                   $("#address").val(data.address);
+                   $("#town").val(data.town);
+                   $("#city").val(data.city);
+                   $("#phone").val(data.phone);
+            },
+            error: function (error) {
+                console.log("error");
+            },
+        });
+    });
 
-            error:function(error){
+    $("#customerUpdate").on("click", function (e) {
+        e.preventDefault();
+        var id = $("#customer_id").val();
+        var data = $("#cform")[0];
+        let formData = new FormData(data);
+        console.log(formData);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + "," + pair[1]);
+        }
+        var table = $("#ctable").DataTable();
+        console.log(id);
+
+        $.ajax({
+            type: "POST",
+            url: "/api/customers/" + id,
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                $("#customerModal").modal("hide");
+                table.ajax.reload();
+            },
+            error: function (error) {
                 console.log(error);
             },
         });
     });
+    
+    // $('#ctable tbody').on('click', 'a.editBtn', function(e){
+
+    //     e.preventDefault();
+    //     $('#customerModal').modal('show');
+    //     var id = $(this).data('id');
+
+    //     $.ajax({
+    //         type: "GET",
+    //         url: `/api/customers/` + id + `/edit`,
+    //         headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content') },
+    //         dataType:"json",
+
+    //         success:function(data){
+    //             console.log(data);
+
+    //             $('#customerId').val(data.id);
+    //             $('#fname').val(data.fname);
+    //             $('#lname').val(data.lname);
+    //             $('#address').val(data.address);
+    //             $('#town').val(data.town);
+    //             $('#city').val(data.city);
+    //             $('#phone').val(data.phone);
+    //             $('#imagePath').val(data.product_image);
+    //         },
+
+    //         error:function(error){
+    //             console.log(error);
+    //         },
+    //     });
+    // });
 
     //delete
     $("#cbody").on("click", ".deletebtn", function (e) {

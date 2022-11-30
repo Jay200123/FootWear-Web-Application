@@ -24,7 +24,7 @@ $(document).ready(function () {
             {   data:null,
                 render: function (data, type, row){
                     console.log(data.service_image)
-                    return `<img src="storage/${data.service_image}" width="50" height="60">`;
+                    return `<img src="storage/${data.service_image}" width="70px" height="80px">`;
                 }
             },
             {data: 'cost_price'},

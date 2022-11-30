@@ -27,9 +27,9 @@ Route::get('products/all', [ProductController::class, 'getProduct'])->name('prod
 //post
 Route::post('/products/store', [ProductController::class, 'store'])->name('product.store');
 
-//edit
+//edit and update
 Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
-Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::post('/products/{id}', [ProductController::class, 'update'])->name('product.update');
 
 //delete
 Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('product.delete');
@@ -40,7 +40,7 @@ Route::get('services/all', [ServiceController::class, 'getService'])->name('serv
 //post
 Route::post('/services/store', [ServiceController::class, 'store'])->name('service.store');
 
-//edit
+//edit and update
 Route::get('/services/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
 Route::put('/services/{id}', [ServiceController::class, 'update'])->name('service.update');
 
@@ -55,8 +55,9 @@ Route::get('/customers/all', [CustomerController::class, 'getCustomerAll'])->nam
 //post
 Route::post('/customers/store', [CustomerController::class, 'store'])->name('customer.store');
 
-//edit
+//edit and update
 Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+Route::post('/customers/{id}', [CustomerController::class, 'update'])->name('customer.update');
 
 //delete
 Route::delete('customers/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
