@@ -40,6 +40,10 @@ Route::get('services/all', [ServiceController::class, 'getService'])->name('serv
 //post
 Route::post('/services/store', [ServiceController::class, 'store'])->name('service.store');
 
+//edit
+Route::get('/services/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
+Route::put('/services/{id}', [ServiceController::class, 'update'])->name('service.update');
+
 //delete
 Route::delete('services/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
 
@@ -50,6 +54,9 @@ Route::get('/customers/all', [CustomerController::class, 'getCustomerAll'])->nam
 // Route::get('/customers/all', ['uses' => 'CustomerController@getCustomerAll', 'as' => 'customer.getcustomerall']);
 //post
 Route::post('/customers/store', [CustomerController::class, 'store'])->name('customer.store');
+
+//edit
+Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
 
 //delete
 Route::delete('customers/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');

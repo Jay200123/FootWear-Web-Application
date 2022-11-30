@@ -23,8 +23,8 @@ $(document).ready(function () {
             {data: 'brand'},
             {   data:null,
                 render: function (data, type, row){
-                    console.log(data.product_image)
-                    return '<img src="public/images/${data.product_image}" width="50" height="60">';
+                    console.log(data.product_image);
+                    return `<img src="storage/${data.product_image}" width="50" height="60">`;
                 }
             },
             {data: 'description'},
@@ -77,15 +77,15 @@ $(document).ready(function () {
     });
 
     //edit
-    $('#ptable pbody').on('click', 'a.editBtn', function(e){
+    $('#ptable tbody').on('click', 'a.editBtn', function(e){
 
         e.preventDefault();
-        var id = $(this).data('id');
         $('#productModal').modal('show');
+        var id = $(this).data('id');
 
         $.ajax({
             type: "GET",
-            url: '/api/products/' + id + '/edit',
+            url: `/api/products/` + id + `/edit`,
             headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content') },
             dataType:"json",
 
@@ -120,7 +120,7 @@ $(document).ready(function () {
         $.ajax({
 
             type: "PUT",
-            url: '/api/products/${id}',
+            url: `/api/products/${id}`,
             data:data,
             headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content')},
             dataType: "json",
@@ -133,7 +133,7 @@ $(document).ready(function () {
                 },
 
                 error: function(error){
-                    alert('error');
+                    alert('AJAX Error');
                 }
             });
 

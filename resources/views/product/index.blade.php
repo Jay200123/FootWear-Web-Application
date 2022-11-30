@@ -1,7 +1,7 @@
 @include('layouts.master')
 <br>
 <div id="products" class="container">
-     <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#productModal"  >add<span  class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+     <!-- <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#productModal"  >add<span  class="glyphicon glyphicon-plus" aria-hidden="true"></span></button> -->
   <div  class="table-responsive">
     <table id="ptable" class="table table-striped table-hover">
       <thead>
@@ -59,6 +59,7 @@
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="productUpdate" type="submit" class="btn btn-primary">Update</button>
           <button id="productSubmit" type="submit" class="btn btn-primary">Save</button>
         </div>
       </div>

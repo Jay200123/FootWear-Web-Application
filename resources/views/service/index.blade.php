@@ -1,7 +1,7 @@
 @include('layouts.master')
 <br>
 <div id="services" class="container">
-     <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#serviceModal"  >add<span  class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+     <!-- <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#serviceModal"  >add<span  class="glyphicon glyphicon-plus" aria-hidden="true"></span></button> -->
   <div  class="table-responsive">
     <table id="stable" class="table table-striped table-hover">
       <thead>

@@ -59,7 +59,7 @@ class CustomerController extends Controller
 
         $files = $request->file('uploads');
 
-        $customer->customer_image = 'images/' . time() . '-' . $files->getClientOriginalName();
+        $customer->customer_image = 'images/'.  $files->getClientOriginalName();
         $customer->save();
 
         Storage::put('public/images/'.$files->getClientOriginalName(), file_get_contents($files));
@@ -85,7 +85,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+        return response()->json($customer);
     }
 
     /**

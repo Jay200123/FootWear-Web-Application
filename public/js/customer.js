@@ -49,8 +49,9 @@ $(document).ready(function () {
             },
             {
                 data: null,
-                render: function (data, type, JsonResultRow, row) {
-                    return `<img src= ${data.customer_image} "height="100px" width="100px">`;
+                render: function (data, type, row) {
+                    console.log(data.customer_image)
+                    return `<img src= "storage/${data.customer_image}" "height="50" width="60">`;
                 },
             },
               {
@@ -96,6 +97,37 @@ $(document).ready(function () {
         });
     });
     
+    $('#ctable tbody').on('click', 'a.editBtn', function(e){
+
+        e.preventDefault();
+        $('#customerModal').modal('show');
+        var id = $(this).data('id');
+
+        $.ajax({
+            type: "GET",
+            url: `/api/customers/` + id + `/edit`,
+            headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content') },
+            dataType:"json",
+
+            success:function(data){
+                console.log(data);
+
+                $('#customerId').val(data.id);
+                $('#fname').val(data.fname);
+                $('#lname').val(data.lname);
+                $('#address').val(data.address);
+                $('#town').val(data.town);
+                $('#city').val(data.city);
+                $('#phone').val(data.phone);
+                $('#imagePath').val(data.product_image);
+            },
+
+            error:function(error){
+                console.log(error);
+            },
+        });
+    });
+
     //delete
     $("#cbody").on("click", ".deletebtn", function (e) {
         var id = $(this).data("id");

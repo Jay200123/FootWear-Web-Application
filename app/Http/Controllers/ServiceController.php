@@ -56,7 +56,7 @@ class ServiceController extends Controller
         $service->save();
 
         Storage::put('public/images/'.$files->getClientOriginalName(), file_get_contents($files));
-        return response()->json(["success" => "product created successfully.", "service" => $service, "status" => 200]);
+        return response()->json(["success" => "service created successfully.", "service" => $service, "status" => 200]);
     }
 
     /**
@@ -76,9 +76,10 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        //
+        $service = Service::findOrFail($id);
+        return response()->json($service);
     }
 
     /**
@@ -88,9 +89,10 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, $id)
     {
-        //
+        $service = Service::findOrFail($id);
+        $service = $service->update($request->all());
     }
 
     /**
