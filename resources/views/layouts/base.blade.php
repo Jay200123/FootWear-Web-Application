@@ -36,3 +36,4 @@
 <script type='text/javascript' src='js/product.js'></script>
 <script type='text/javascript' src='js/service.js'></script>
 <script type='text/javascript' src='js/customer.js'></script>
+<script type="text/javascript" src='js/employee.js'></script>

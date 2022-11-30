@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CustomerController;
-
+use App\Http\Controllers\EmployeeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -52,6 +52,7 @@ Route::delete('services/{id}', [ServiceController::class, 'destroy'])->name('ser
 //get
 Route::get('/customers/all', [CustomerController::class, 'getCustomerAll'])->name('customer.all');
 // Route::get('/customers/all', ['uses' => 'CustomerController@getCustomerAll', 'as' => 'customer.getcustomerall']);
+
 //post
 Route::post('/customers/store', [CustomerController::class, 'store'])->name('customer.store');
 
@@ -61,3 +62,17 @@ Route::post('/customers/{id}', [CustomerController::class, 'update'])->name('cus
 
 //delete
 Route::delete('customers/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
+
+//employee
+//get
+Route::get('/employees/all', [EmployeeController::class, 'getEmployeeAll'])->name('employee.all');
+//post
+Route::post('/employees/store', [EmployeeController::class, 'store'])->name('employee.store');
+
+
+//delete
+Route::delete('employees/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+
+//edit
+Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
+Route::post('/employees/{id}', [EmployeeController::class, 'update'])->name('employee.update');

@@ -44,10 +44,14 @@
          <span class="navbar-toggler-icon"></span> 
         </button> 
         <div class="collapse navbar-collapse" id="main-navigation"> 
-        <ul class="navbar-nav"> 
+        <ul class="navbar-nav">
+
         <li class="nav-item"><a class="nav-link" href="{{route('customer.index')}}"><p><strong><i class="fa fa-user" aria-hidden="true"></i>Customer</strong></p></a> </li>
-         <li class="nav-item"> <a class="nav-link" href="#"><p><strong><i class="fa fa-user-md" aria-hidden="true"></i>Employee</strong></p></a> </li> 
+
+         <li class="nav-item"> <a class="nav-link" href="{{route('employee.index')}}"><p><strong><i class="fa fa-user-md" aria-hidden="true"></i>Employee</strong></p></a> </li> 
+
         <li class="nav-item"> <a class="nav-link" href="{{route('service.index')}}"><p><strong><i class="fa fa-phone" aria-hidden="true"></i>Services</strong></p></a> </li>
+
         <li class="nav-item"> <a class="nav-link" href="{{route('product.index')}}"><p><strong><i class="fa fa-product-hunt"  aria-hidden="true"></i>Products</strong></p></a></li>
         </ul> 
         

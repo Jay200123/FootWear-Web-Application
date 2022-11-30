@@ -89,7 +89,7 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             cache: false,
-            url: `/api/products/` + id + `/edit`,
+            url: "/api/products/" + id + "/edit",
             headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content'), },
             dataType:"json",
 

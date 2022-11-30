@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::get('product', [ProductController::class, 'index'])->name('product.index'
 Route::get('service', [ServiceController::class, 'index'])->name('service.index');
 
 Route::get('customer', [CustomerController::class, 'index'])->name('customer.index');
+
+Route::get('employee', [EmployeeController::class, 'index'])->name('employee.index');
