@@ -27,4 +27,4 @@ Route::get('service', [ServiceController::class, 'index'])->name('service.index'
 
 Route::get('customer', [CustomerController::class, 'index'])->name('customer.index');
 
-Route::get('employee', [EmployeeController::class, 'index'])->name('employee.index');
+Route::get('employee', [EmployeeController::class, 'index'])->name('employee.index');   
