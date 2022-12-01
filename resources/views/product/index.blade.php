@@ -31,6 +31,10 @@
           <div class="modal-body">
             <form id="pform" method="#" action="#" enctype="multipart/form-data">
 
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="product_id" name="id">
+              </div>
+
              <div class="form-group">
                   <label for="desc" class="control-label">Description</label>
                   <input type="text" class="form-control" id="description" name="description"  >

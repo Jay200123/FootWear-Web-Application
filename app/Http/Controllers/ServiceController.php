@@ -78,7 +78,7 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::findOrFail($id);
+        $service = Service::find($id);
         return response()->json($service);
     }
 
@@ -91,8 +91,23 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $service = Service::findOrFail($id);
-        $service = $service->update($request->all());
+        
+        $service = Service::find($id);
+        $input = $request->all();
+
+        // $service->brand = $request->brand;
+        $service->description = $request->description;
+        $service->cost_price = $request->cost_price;
+        $service->sell_price = $request->sell_price;
+
+        $files = $request->file('uploads');
+
+        $service->service_image = 'images/'.$files->getClientOriginalName();
+        Storage::put('public/images/'.$files->getClientOriginalName(), file_get_contents($files));
+        
+        // $product->update($input);
+        $service->save($input);
+        return response()->json(["success" => "service updated successfully.", "service" => $service, "status" => 200]);
     }
 
     /**
@@ -107,6 +122,6 @@ class ServiceController extends Controller
         $service->delete();
 
         // return response()->json($service);
-        return response()->json(["success", => "Service deleted successfully.", "service" => $service, "status" => 200]);
+        return response()->json(["success" => "Service deleted successfully.", "service" => $service, "status" => 200]);
     }
 }

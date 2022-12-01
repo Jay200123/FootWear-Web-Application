@@ -91,7 +91,7 @@ $('#stable tbody').on('click', 'a.editBtn', function(e){
         success:function(data){
             console.log(data);
 
-            $('#serviceId').val(data.id);
+            $('#service_id').val(data.id);
             $('#description').val(data.description);
             $('#cost_price').val(data.cost_price);
             $('#sell_price').val(data.sell_price);
@@ -108,31 +108,41 @@ $('#stable tbody').on('click', 'a.editBtn', function(e){
 $('#serviceUpdate').on('click', function(e){
 
     e.preventDefault();
-    var id = $('#serviceId').val();
+    var id = $('#service_id').val();
+    var data = $("#sform")[0];
+
+    let formData = new FormData(data);
+    console.log(formData);
+
+    for (var pair of formData.entries()){
+        console.log(pair[0] + "," + pair[1]);
+    }
+
+    var table = $("#stable").DataTable();
     console.log(id);
-    
-    var table = $('#stable').DataTable();
-    var cRow = $("tr td:eq("+ id + ")").closest('tr');
-    var data = $("#sform").serialize();
 
     $.ajax({
 
-        type: "PUT",
-        url: '/api/services/${id}',
-        data:data,
-        headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content')},
+        type: "POST",
+        url: "/api/services/" + id,
+        data: formData,
+        contentType: false,
+        processData: false,
+        headers: {'X-CSRF-TOKEN': $('meta [name="csrf-token"]').attr('content'), },
         dataType: "json",
 
         success: function(data){
             console.log(data);
+            $("#serviceModal").modal("hide");
+            table.ajax.reload();
 
-            $('#serviceModal').modal("hide");
-            table.row(cRow).data(data).invalidate().draw(false);
+            // $('#productModal').modal("hide");
+            // table.row(cRow).data(data).invalidate().draw(false);
             },
 
             error: function(error){
-                alert('error');
-            }
+                alert('Error');
+            },
         });
 
 });

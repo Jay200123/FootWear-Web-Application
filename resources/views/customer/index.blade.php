@@ -34,6 +34,10 @@
             <form id="cform" method="#" action="#" enctype="multipart/form-data">
 
             <div class="form-group">
+                <input type="hidden" class="form-control" id="customer_id" name="id">
+              </div>
+              
+            <div class="form-group">
                         <label for="fname" class="control-label">First Name</label>
                         <input type="text" class="form-control" id="fname" name="fname">
                     </div>

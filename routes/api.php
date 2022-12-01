@@ -42,7 +42,7 @@ Route::post('/services/store', [ServiceController::class, 'store'])->name('servi
 
 //edit and update
 Route::get('/services/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
-Route::put('/services/{id}', [ServiceController::class, 'update'])->name('service.update');
+Route::post('/services/{id}', [ServiceController::class, 'update'])->name('service.update');
 
 //delete
 Route::delete('services/{id}', [ServiceController::class, 'destroy'])->name('service.delete');

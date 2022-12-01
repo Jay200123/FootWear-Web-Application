@@ -128,6 +128,6 @@ class CustomerController extends Controller
         $customer = Customer::findOrFail($id);
         $customer->delete();
 
-        return response()->json(["success", =>"Customer Record Deleted Successfully.", "customer", => $customer, "status" =>200]);
+        return response()->json(["success" => "Customer Record Deleted Successfully.", "customer" => $customer, "status" =>200]);
     }
 }

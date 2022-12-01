@@ -30,6 +30,10 @@
           <div class="modal-body">
             <form id="sform" method="#" action="#" enctype="multipart/form-data">
 
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="service_id" name="id">
+              </div>
+
              <div class="form-group">
                   <label for="desc" class="control-label">Description</label>
                   <input type="text" class="form-control" id="description" name="description"  >
@@ -53,6 +57,7 @@
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="serviceUpdate" type="submit" class="btn btn-primary">Update</button>
           <button id="serviceSubmit" type="submit" class="btn btn-primary">Save</button>
         </div>
       </div>
